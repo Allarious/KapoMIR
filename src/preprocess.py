@@ -29,8 +29,9 @@ def persian_stemmer(list):
         output.append(hazm_stemmer.stem(token))
     return output
 
-for i in persian_stemmer(delete_persian_stop_words(persian_tokenize(persian_normalizer('اصلاح نويسه ها و استفاده از نیم‌فاصله ،پردازش را آسان مي كند')))):
-    print(i)
+def persian_preprocess(text):
+    for i in persian_stemmer(delete_persian_stop_words(persian_tokenize(persian_normalizer(text)))):
+        print(i)
     
     
 def english_normalizer(text):
@@ -39,10 +40,10 @@ def english_normalizer(text):
 def english_tokenize(text):
     return nltk.word_tokenize(text)
 
-def delete_english_stop_words(text):
+def delete_english_stop_words(list):
     stop_words = ',!?'
     output = []
-    for token in text:
+    for token in list:
         if(token in stop_words):
             continue
         else:
@@ -55,5 +56,6 @@ def english_stemmer(list):
         output.append(ps.stem(token))
     return output
 
-for i in english_stemmer(delete_english_stop_words(english_tokenize(english_normalizer('I ,have ,gone ,saved, games, what about you? someths')))):
-    print(i)
+def english_preprocess(text):
+    for i in english_stemmer(delete_english_stop_words(english_tokenize(english_normalizer(text)))):
+        print(i)
